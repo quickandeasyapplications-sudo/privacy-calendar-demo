@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Calendar - Interactive Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-default">
+    <!-- ============================================
+         NAVIGATION BAR
+         ============================================ -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🔒</span>
+                <span class="logo-text">Privacy Calendar</span>
+            </div>
+            
+            <div class="nav-center">
+                <ul class="nav-links">
+                    <li><a href="#calendar" class="nav-link">Calendar</a></li>
+                    <li><a href="#templates" class="nav-link">Templates</a></li>
+                    <li><a href="#features" class="nav-link">Features</a></li>
+                    <li><a href="#security" class="nav-link">Security</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-right">
+                <div class="theme-selector">
+                    <label for="themeSelect">Theme:</label>
+                    <select id="themeSelect" class="theme-dropdown">
+                        <option value="default">Zero-Trust (Cybersecurity)</option>
+                        <option value="minimalist">Mindful Minimalist</option>
+                        <option value="enterprise">Global Connect</option>
+                        <option value="compliance">Data Guardian</option>
+                        <option value="ai">Adaptive AI</option>
+                    </select>
+                </div>
+                <a href="#" class="btn cta">Get Full App</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         HERO SECTION
+         ============================================ -->
+    <section class="hero">
+        <div class="container">
+            <h1 id="heroTitle">Privacy Calendar</h1>
+            <p id="heroSubtitle">Your schedule, completely private. Encrypted, offline-first, and under your control.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('calendar')">Try the Demo</button>
+                <button class="btn btn-secondary" onclick="scrollToSection('templates')">Explore Templates</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CALENDAR SECTION
+         ============================================ -->
+    <section id="calendar" class="section">
+        <div class="container">
+            <h2>Interactive Calendar Demo</h2>
+            <p class="section-subtitle">Click any date to create an event. Try using templates for quick event creation.</p>
+            
+            <div class="calendar-wrapper">
+                <!-- Main Calendar -->
+                <div class="calendar-main">
+                    <div class="calendar-header">
+                        <button class="btn-nav" onclick="previousMonth()">←</button>
+                        <h3 id="monthYear"></h3>
+                        <button class="btn-nav" onclick="nextMonth()">→</button>
+                    </div>
+                    
+                    <div class="calendar-grid">
+                        <div class="day-header">Sun</div>
+                        <div class="day-header">Mon</div>
+                        <div class="day-header">Tue</div>
+                        <div class="day-header">Wed</div>
+                        <div class="day-header">Thu</div>
+                        <div class="day-header">Fri</div>
+                        <div class="day-header">Sat</div>
+                        <div id="calendarDays" class="calendar-days"></div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="calendar-sidebar">
+                    <!-- Theme-Specific Widget -->
+                    <div class="sidebar-section theme-widget" id="themeWidget">
+                        <!-- Dynamically populated by JavaScript -->
+                    </div>
+
+                    <!-- Today's Events -->
+                    <div class="sidebar-section">
+                        <h3>Today's Events</h3>
+                        <div class="events-list" id="eventsList">
+                            <p class="empty-state">No events today</p>
+                        </div>
+                    </div>
+
+                    <!-- Quick Template Buttons -->
+                    <div class="sidebar-section">
+                        <h3>Quick Templates</h3>
+                        <div class="template-buttons">
+                            <button class="template-btn" onclick="createEventFromTemplate('meeting')">📅 Quick Meeting</button>
+                            <button class="template-btn" onclick="createEventFromTemplate('standup')">🎯 Daily Standup</button>
+                            <button class="template-btn" onclick="createEventFromTemplate('review')">👥 1:1 Review</button>
+                            <button class="template-btn" onclick="createEventFromTemplate('project')">🚀 Project Kickoff</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         TEMPLATES SECTION
+         ============================================ -->
+    <section id="templates" class="section section-alt">
+        <div class="container">
+            <h2>50+ Professional Templates</h2>
+            <p class="section-subtitle">Pre-configured event templates for every scenario. Click to see details or use immediately.</p>
+            
+            <div class="templates-grid">
+                <!-- Meeting Templates -->
+                <div class="template-category">
+                    <h4>📅 Meeting Templates</h4>
+                    <div class="template-list">
+                        <div class="template-item" onclick="showTemplateDetail('meeting')">
+                            <span class="template-icon">⏱️</span>
+                            <span class="template-name">Quick Meeting</span>
+                        </div>
+                        <div class="template-item" onclick="showTemplateDetail('standup')">
+                            <span class="template-icon">🎯</span>
+                            <span class="template-name">Daily Standup</span>
+                        </div>
+                        <div class="template-item" onclick="showTemplateDetail('review')">
+                            <span class="template-icon">👥</span>
+                            <span class="template-name">1:1 Review</span>
+                        </div>
+                        <div class="template-item" onclick="showTemplateDetail('conference')">
+                            <span class="template-icon">🎤</span>
+                            <span class="template-name">Conference</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Templates -->
+                <div class="template-category">
+                    <h4>🚀 Project Templates</h4>
+                    <div class="template-list">
+                        <div class="template-item" onclick="showTemplateDetail('project')">
+                            <span class="template-icon">🎯</span>
+                            <span class="template-name">Project Kickoff</span>
+                        </div>
+                        <div class="template-item" onclick="showTemplateDetail('planning')">
+                            <span class="template-icon">📋</span>
+                            <span class="template-name">Sprint Planning</span>
+                        </div>
+                        <div class="template-item" onclick="showTemplateDetail('retrospective')">
+                            <span class="template-icon">🔄</span>
+                            <span class="template-name">Retrospective</span>
+                        </div>
+                        <div class="template-item" onclick="showTemplateDetail('closure')">
+                            <span class="template-icon">✅</span>
+                            <span class="template-name">Project Closure</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Training Templates -->
+                <div class="template-category">
+                    <h4>📚 Training Templates</h4>
+                    <div class="template-list">
+                        <div class="template-item" onclick="showTemplateDetail('workshop')">
+                            <span class="template-icon">🛠️</span>
+                            <span class="template-name">Workshop</span>
+                        </div>
+                        <div class="template-item" onclick="showTemplateDetail('webinar')">
+                            <span class="template-icon">💻</span>
+                            <span class="template-name">Webinar</span>
+                        </div>
+                        <div class="template-item" onclick="showTemplateDetail('demo')">
+                            <span class="template-icon">🎬</span>
+                            <span class="template-name">Product Demo</span>
+                        </div>
+                        <div class="template-item" onclick="showTemplateDetail('networking')">
+                            <span class="template-icon">🤝</span>
+                            <span class="template-name">Networking Event</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sales Templates -->
+                <div class="template-category">
+                    <h4>💼 Sales Templates</h4>
+                    <div class="template-list">
+                        <div class="template-item" onclick="showTemplateDetail('pitch')">
+                            <span class="template-icon">🎤</span>
+                            <span class="template-name">Sales Pitch</span>
+                        </div>
+                        <div class="template-item" onclick="showTemplateDetail('negotiation')">
+                            <span class="template-icon">💬</span>
+                            <span class="template-name">Negotiation</span>
+                        </div>
+                        <div class="template-item" onclick="showTemplateDetail('followup')">
+                            <span class="template-icon">📞</span>
+                            <span class="template-name">Follow-up Call</span>
+                        </div>
+                        <div class="template-item" onclick="showTemplateDetail('milestone')">
+                            <span class="template-icon">🎯</span>
+                            <span class="template-name">Milestone Review</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FEATURES SECTION
+         ============================================ -->
+    <section id="features" class="section">
+        <div class="container">
+            <h2>Powerful Features</h2>
+            <p class="section-subtitle">Everything you need for secure, private scheduling.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h4>End-to-End Encryption</h4>
+                    <p>All your events are encrypted with AES-256-GCM. Only you can read your calendar.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h4>Offline-First</h4>
+                    <p>Works without internet. Your data syncs when you're back online.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h4>AI Assistant</h4>
+                    <p>Smart scheduling suggestions based on your patterns and preferences.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎙️</div>
+                    <h4>Voice Interface</h4>
+                    <p>Create events and manage your calendar using natural voice commands.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h4>Adaptive UI</h4>
+                    <p>Interface adapts to your preferences and usage patterns for optimal UX.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h4>Ecosystem Integration</h4>
+                    <p>Integrates with Slack, Google Calendar, Zoom, Teams, and more.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECURITY SECTION
+         ============================================ -->
+    <section id="security" class="section section-alt">
+        <div class="container">
+            <h2>Privacy & Security</h2>
+            <p class="section-subtitle">Built with privacy as the foundation, not an afterthought.</p>
+            
+            <div class="security-grid">
+                <div class="security-item">
+                    <h4>Zero-Knowledge Architecture</h4>
+                    <p>We cannot access your calendar data. Not even we can see your events. Your privacy is guaranteed by design.</p>
+                </div>
+
+                <div class="security-item">
+                    <h4>No Tracking</h4>
+                    <p>No analytics, no tracking pixels, no data collection. Your activity remains completely private.</p>
+                </div>
+
+                <div class="security-item">
+                    <h4>Local Data Storage</h4>
+                    <p>Your calendar data is stored locally on your device. Sync is encrypted end-to-end.</p>
+                </div>
+
+                <div class="security-item">
+                    <h4>Compliance Ready</h4>
+                    <p>Meets GDPR, CCPA, and HIPAA requirements. Perfect for regulated industries.</p>
+                </div>
+
+                <div class="security-item">
+                    <h4>Open Source</h4>
+                    <p>Our code is open for audit. Security through transparency and community review.</p>
+                </div>
+
+                <div class="security-item">
+                    <h4>Audit Logging</h4>
+                    <p>Comprehensive audit logs for compliance and security monitoring.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CTA SECTION
+         ============================================ -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Secure Your Schedule?</h2>
+            <p>Get the full Privacy Calendar application with advanced features, integrations, and enterprise support.</p>
+            <div class="cta-buttons">
+                <button class="btn btn-primary">Download Now</button>
+                <button class="btn btn-secondary">View Documentation</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Privacy Calendar. All rights reserved.</p>
+            <p>
+                <a href="#">Privacy Policy</a> • 
+                <a href="#">Terms of Service</a> • 
+                <a href="#">GitHub</a> • 
+                <a href="#">Support</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         EVENT CREATION MODAL
+         ============================================ -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeEventModal()">✕</button>
+            <h3>Create New Event</h3>
+            
+            <form id="eventForm">
+                <div class="form-group">
+                    <label for="eventTitle">Event Title *</label>
+                    <input type="text" id="eventTitle" placeholder="e.g., Team Meeting" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventDate">Date *</label>
+                    <input type="date" id="eventDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventTime">Time</label>
+                    <input type="time" id="eventTime" value="10:00">
+                </div>
+
+                <div class="form-group">
+                    <label for="eventDuration">Duration (minutes)</label>
+                    <input type="number" id="eventDuration" value="60" min="15" step="15">
+                </div>
+
+                <div class="form-group">
+                    <label for="eventPrivacy">Privacy Level</label>
+                    <select id="eventPrivacy">
+                        <option value="public">Public</option>
+                        <option value="internal">Internal</option>
+                        <option value="private" selected>Private</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="eventEncryption" checked>
+                        Enable Encryption
+                    </label>
+                </div>
+
+                <div class="form-group" id="complianceTagGroup" style="display: none;">
+                    <label for="complianceTag">Compliance Tag</label>
+                    <select id="complianceTag">
+                        <option value="none">None</option>
+                        <option value="hipaa">HIPAA Sensitive</option>
+                        <option value="gdpr">GDPR Data</option>
+                        <option value="confidential">Confidential</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Create Event</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================
+         TEMPLATE DETAIL MODAL
+         ============================================ -->
+    <div id="templateModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeTemplateDetail()">✕</button>
+            <h3 id="templateTitle"></h3>
+            <p id="templateDescription"></p>
+            
+            <div class="template-details" id="templateDetails"></div>
+            
+            <button class="btn btn-primary" onclick="useTemplate()" style="width: 100%;">Use This Template</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
