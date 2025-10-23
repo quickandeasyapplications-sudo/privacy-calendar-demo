@@ -87,6 +87,35 @@
                         <div class="day-header">Sat</div>
                         <div id="calendarDays" class="calendar-days"></div>
                     </div>
+
+                    <!-- International Days & AI Hints Widget -->
+                    <div class="calendar-insights">
+                        <div class="insights-container">
+                            <!-- International Days -->
+                            <div class="insights-section international-days">
+                                <h4>🌍 Today's Observance</h4>
+                                <div id="internationalDayWidget" class="insight-content">
+                                    <p class="loading">Loading...</p>
+                                </div>
+                            </div>
+
+                            <!-- AI Hints -->
+                            <div class="insights-section ai-hints">
+                                <h4>💡 Scheduling Tip</h4>
+                                <div id="aiHintWidget" class="insight-content">
+                                    <p class="loading">Loading...</p>
+                                </div>
+                            </div>
+
+                            <!-- Month's Special Days -->
+                            <div class="insights-section month-days">
+                                <h4>📅 This Month's Observances</h4>
+                                <div id="monthDaysWidget" class="insight-content">
+                                    <p class="loading">Loading...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Sidebar -->
@@ -357,9 +386,11 @@
     <div id="eventModal" class="modal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeEventModal()">✕</button>
-            <h3>Create New Event</h3>
+            <h3 id="eventModalTitle">Create New Event</h3>
             
             <form id="eventForm">
+                <input type="hidden" id="eventId">
+                <input type="hidden" id="eventOriginalDate">
                 <div class="form-group">
                     <label for="eventTitle">Event Title *</label>
                     <input type="text" id="eventTitle" placeholder="e.g., Team Meeting" required>
@@ -406,7 +437,10 @@
                     </select>
                 </div>
 
-                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Create Event</button>
+                <div class="form-buttons" style="display: flex; gap: 10px; margin-top: 1rem;">
+                    <button type="submit" class="btn btn-primary" id="eventSubmitBtn" style="flex: 1;">Create Event</button>
+                    <button type="button" class="btn btn-danger" id="eventDeleteBtn" style="display: none; background-color: #dc3545; flex: 1;" onclick="deleteCurrentEvent()">Delete Event</button>
+                </div>
             </form>
         </div>
     </div>
