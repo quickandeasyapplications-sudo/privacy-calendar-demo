@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Calendar - Interactive Demo</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="assets/calendar-icon.png">
 </head>
 <body class="theme-default">
     <!-- ============================================
@@ -13,7 +14,7 @@
     <nav class="navbar">
         <div class="container">
             <div class="logo">
-                <span class="logo-icon">🔒</span>
+                <img src="assets/calendar-icon.png" alt="Privacy Calendar" class="logo-img">
                 <span class="logo-text">Privacy Calendar</span>
             </div>
             
@@ -47,6 +48,9 @@
          ============================================ -->
     <section class="hero">
         <div class="container">
+            <div class="hero-icon">
+                <img src="assets/app-icon.png" alt="Privacy Calendar App" class="hero-app-icon">
+            </div>
             <h1 id="heroTitle">Privacy Calendar</h1>
             <p id="heroSubtitle">Your schedule, completely private. Encrypted, offline-first, and under your control.</p>
             <div class="hero-buttons">
@@ -272,8 +276,11 @@
          ============================================ -->
     <section id="security" class="section section-alt">
         <div class="container">
-            <h2>Privacy & Security</h2>
-            <p class="section-subtitle">Built with privacy as the foundation, not an afterthought.</p>
+            <div class="security-header">
+                <img src="assets/data-privacy-icon.png" alt="Data Privacy" class="security-icon-large">
+                <h2>Privacy & Security</h2>
+                <p class="section-subtitle">Built with privacy as the foundation, not an afterthought.</p>
+            </div>
             
             <div class="security-grid">
                 <div class="security-item">
@@ -314,6 +321,7 @@
          ============================================ -->
     <section class="cta-section">
         <div class="container">
+            <img src="assets/logo.png" alt="Privacy Calendar Logo" class="cta-logo">
             <h2>Ready to Secure Your Schedule?</h2>
             <p>Get the full Privacy Calendar application with advanced features, integrations, and enterprise support.</p>
             <div class="cta-buttons">
@@ -328,13 +336,18 @@
          ============================================ -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Privacy Calendar. All rights reserved.</p>
-            <p>
-                <a href="#">Privacy Policy</a> • 
-                <a href="#">Terms of Service</a> • 
-                <a href="#">GitHub</a> • 
-                <a href="#">Support</a>
-            </p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="assets/calendar-icon.png" alt="Privacy Calendar" class="footer-logo">
+                    <p>&copy; 2024 Privacy Calendar. All rights reserved.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a> • 
+                    <a href="#">Terms of Service</a> • 
+                    <a href="#">GitHub</a> • 
+                    <a href="#">Support</a>
+                </div>
+            </div>
         </div>
     </footer>
 
@@ -416,3 +429,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
